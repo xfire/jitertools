@@ -3,6 +3,8 @@ package de.downgra.jitertools;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import de.downgra.jitertools.utils.IFunctor;
+
 public class JIterTools {
 
 	public static <T> Iterable<T> chain(final Iterable<Iterable<T>> iterables) {
@@ -108,6 +110,52 @@ public class JIterTools {
 			}
 		};
 
+	}
+
+	public static <T> Iterable<T> dropwhile(final IFunctor<T> predicate,
+			final Iterable<T> iterable) {
+		return new Iterable<T>() {
+			@Override
+			public Iterator<T> iterator() {
+				return new Iterator<T>() {
+					private Iterator<T> _iterator = iterable.iterator();
+					private T _first = null;
+					private boolean _onFirst = false;
+
+					private boolean consume() {
+						if (_first == null) {
+							while (_iterator.hasNext()) {
+								_first = _iterator.next();
+								if (!predicate.call(_first)) {
+									_onFirst = true;
+									return true;
+								}
+							}
+						}
+						return false;
+					}
+
+					@Override
+					public boolean hasNext() {
+						return consume() || _iterator.hasNext();
+					}
+
+					@Override
+					public T next() {
+						consume();
+						if (_onFirst) {
+							_onFirst = false;
+							return _first;
+						}
+						return _iterator.next();
+					}
+
+					@Override
+					public void remove() {
+					}
+				};
+			}
+		};
 	}
 
 }
