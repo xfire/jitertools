@@ -43,4 +43,32 @@ public class JIterTools {
 			};
 		}
 	}
+	
+	public static Iterable<Integer> count() {
+		return count(0);
+	}
+	public static Iterable<Integer> count(final int n) {
+		return new Iterable<Integer>() {
+			@Override
+			public Iterator<Integer> iterator() {
+				return new Iterator<Integer>() {
+					private int _i = n;
+					
+					@Override
+					public boolean hasNext() {
+						return true;
+					}
+
+					@Override
+					public Integer next() {
+						return _i++;
+					}
+
+					@Override
+					public void remove() {
+					}
+				};
+			}
+		};
+	}
 }

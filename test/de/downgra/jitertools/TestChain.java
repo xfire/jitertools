@@ -1,4 +1,4 @@
-package de.downgra.jitertools.tests;
+package de.downgra.jitertools;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
@@ -19,7 +19,7 @@ public final class TestChain {
 		outer.add(Arrays.asList(c));
 
 		int validator = 1;
-		for (Integer i : JIterTools.chain(outer)) {
+		for (final Integer i : JIterTools.chain(outer)) {
 			assertEquals(validator++, i);
 		}
 	}
@@ -27,7 +27,7 @@ public final class TestChain {
 	@Test
 	public void empty() {
 		ArrayList<Iterable<Integer>> outer = new ArrayList<Iterable<Integer>>();
-		for (@SuppressWarnings("unused") Integer i : JIterTools.chain(outer)) {
+		for (@SuppressWarnings("unused") final Integer i : JIterTools.chain(outer)) {
 			fail();
 		}
 	}
