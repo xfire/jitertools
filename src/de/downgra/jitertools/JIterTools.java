@@ -212,4 +212,45 @@ public class JIterTools {
 		}, iterable);
 	}
 
+	public static <T> Iterable<T> takewhile(final IFunctor<T> predicate,
+			final Iterable<T> iterable) {
+		return new Iterable<T>() {
+			@Override
+			public Iterator<T> iterator() {
+				return new Iterator<T>() {
+					private final Iterator<T> _iterator = iterable.iterator();
+					private T _last = null;
+
+					private boolean consume() {
+						if (_last == null) {
+							if (_iterator.hasNext()) {
+								_last = _iterator.next();
+								if (predicate.call(_last)) {
+									return true;
+								}
+							}
+						}
+						return false;
+					}
+
+					@Override
+					public boolean hasNext() {
+						return consume();
+					}
+
+					@Override
+					public T next() {
+						consume();
+						T tmp = _last;
+						_last = null;
+						return tmp;
+					}
+
+					@Override
+					public void remove() {
+					}
+				};
+			}
+		};
+	}
 }
