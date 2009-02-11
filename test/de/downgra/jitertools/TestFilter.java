@@ -1,8 +1,9 @@
 package de.downgra.jitertools;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.fail;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.junit.Test;
@@ -28,21 +29,31 @@ public class TestFilter {
 
 	@Test
 	public void filter() {
-		int count = 0;
+		ArrayList<Integer> result = new ArrayList<Integer>();
 		for (Integer i : JIterTools.filter(new LT(4), Arrays.asList(a))) {
-			assertTrue(i < 4);
-			count++;
+			result.add(i);
 		}
-		assertEquals(6, count);
+		assertArrayEquals(new Integer[] { 3, 2, 1, 3, 2, 3 }, result.toArray());
 	}
 
 	@Test
 	public void filterfalse() {
-		int count = 0;
+		ArrayList<Integer> result = new ArrayList<Integer>();
 		for (Integer i : JIterTools.filterfalse(new LT(4), Arrays.asList(a))) {
-			assertTrue(i >= 4);
-			count++;
+			result.add(i);
 		}
-		assertEquals(5, count);
+		assertArrayEquals(new Integer[] { 5, 4, 5, 7, 8 }, result.toArray());
+	}
+
+	@Test
+	public void empty() {
+		for (@SuppressWarnings("unused")
+		Integer i : JIterTools.filter(new LT(4), new ArrayList<Integer>())) {
+			fail();
+		}
+		for (@SuppressWarnings("unused")
+		Integer i : JIterTools.filterfalse(new LT(4), new ArrayList<Integer>())) {
+			fail();
+		}
 	}
 }

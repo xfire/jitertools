@@ -1,7 +1,8 @@
 package de.downgra.jitertools;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertArrayEquals;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.junit.Test;
@@ -26,31 +27,29 @@ public class TestDropwhile {
 
 	@Test
 	public void middle() {
-		int validator = 8;
+		ArrayList<Integer> result = new ArrayList<Integer>();
 		for (Integer i : JIterTools.dropwhile(new LT(5), Arrays.asList(a))) {
-			assertEquals(validator, i);
-			validator /= 2;
+			result.add(i);
 		}
+		assertArrayEquals(new Integer[] { 8, 4, 2, 1 }, result.toArray());
 	}
 
 	@Test
 	public void first() {
-		int counter = 0;
+		ArrayList<Integer> result = new ArrayList<Integer>();
 		for (Integer i : JIterTools.dropwhile(new LT(1), Arrays.asList(a))) {
-			assertEquals(a[counter++], i);
+			result.add(i);
 		}
+		assertArrayEquals(a, result.toArray());
 	}
 
 	@Test
 	public void last() {
 		Integer a[] = { 1, 2, 3, 4, 5 };
-		int validator = 5;
-		int counter = 0;
-		for (Integer i : JIterTools.dropwhile(new LT(validator), Arrays
-				.asList(a))) {
-			assertEquals(validator, i);
-			counter++;
+		ArrayList<Integer> result = new ArrayList<Integer>();
+		for (Integer i : JIterTools.dropwhile(new LT(5), Arrays.asList(a))) {
+			result.add(i);
 		}
-		assertEquals(1, counter);
+		assertArrayEquals(new Integer[] { 5 }, result.toArray());
 	}
 }
