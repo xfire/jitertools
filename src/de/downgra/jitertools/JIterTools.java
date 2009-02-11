@@ -158,4 +158,58 @@ public class JIterTools {
 		};
 	}
 
+	public static <T> Iterable<T> filter(final IFunctor<T> predicate,
+			final Iterable<T> iterable) {
+		return new Iterable<T>() {
+			@Override
+			public Iterator<T> iterator() {
+				return new Iterator<T>() {
+					private final Iterator<T> _iterator = iterable.iterator();
+					private T _last = null;
+
+					private boolean consume() {
+						if (_last == null) {
+							while (_iterator.hasNext()) {
+								_last = _iterator.next();
+								if (predicate.call(_last)) {
+									return true;
+								}
+							}
+							_last = null;
+						}
+						return false;
+					}
+
+					@Override
+					public boolean hasNext() {
+						return consume() || _iterator.hasNext();
+					}
+
+					@Override
+					public T next() {
+						consume();
+						T tmp = _last;
+						_last = null;
+						return tmp;
+					}
+
+					@Override
+					public void remove() {
+					}
+				};
+			}
+
+		};
+	}
+
+	public static <T> Iterable<T> filterfalse(final IFunctor<T> predicate,
+			final Iterable<T> iterable) {
+		return filter(new IFunctor<T>() {
+			@Override
+			public boolean call(T object) {
+				return !predicate.call(object);
+			}
+		}, iterable);
+	}
+
 }
