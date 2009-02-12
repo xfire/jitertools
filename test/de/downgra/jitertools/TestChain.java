@@ -27,7 +27,8 @@ public final class TestChain {
 	@Test
 	public void empty() {
 		ArrayList<Iterable<Integer>> outer = new ArrayList<Iterable<Integer>>();
-		for (@SuppressWarnings("unused") final Integer i : JIterTools.chain(outer)) {
+		for (@SuppressWarnings("unused")
+		final Integer i : JIterTools.chain(outer)) {
 			fail();
 		}
 	}
@@ -67,12 +68,12 @@ public final class TestChain {
 
 		doTest(a, b, c);
 	}
-	
+
 	@Test
 	public void allEmpty() {
-		Integer a[] = { };
-		Integer b[] = { };
-		Integer c[] = { };
+		Integer a[] = {};
+		Integer b[] = {};
+		Integer c[] = {};
 
 		doTest(a, b, c);
 	}

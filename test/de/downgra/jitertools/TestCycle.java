@@ -24,12 +24,13 @@ public class TestCycle {
 				break;
 		}
 	}
-	
+
 	@Test
 	public void empty() {
 		Iterable<Integer> iterable = new ArrayList<Integer>();
 
-		for (@SuppressWarnings("unused") final Integer i : JIterTools.cycle(iterable)) {
+		for (@SuppressWarnings("unused")
+		final Integer i : JIterTools.cycle(iterable)) {
 			fail();
 		}
 	}
