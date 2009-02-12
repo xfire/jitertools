@@ -7,6 +7,7 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses( { TestChain.class, TestCount.class, TestCycle.class,
-		TestDropwhile.class, TestFilter.class, TestTakewhile.class, TestRange.class })
+		TestDropwhile.class, TestFilter.class, TestTakewhile.class,
+		TestRange.class, TestMap.class })
 public class TestSuite {
 }

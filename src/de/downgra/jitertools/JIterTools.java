@@ -2,6 +2,7 @@ package de.downgra.jitertools;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import de.downgra.jitertools.utils.IBooleanFunctor;
 import de.downgra.jitertools.utils.IFunctor;
@@ -48,6 +49,41 @@ public class JIterTools {
 			}
 
 		};
+	}
+
+	public static <E, T> Iterable<E> map(final IFunctor<E, T> function,
+			final Iterable<T> iterable) {
+		return new Iterable<E>() {
+			@Override
+			public Iterator<E> iterator() {
+				return new Iterator<E>() {
+					private final Iterator<T> _iterator = iterable.iterator();
+
+					@Override
+					public boolean hasNext() {
+						return _iterator.hasNext();
+					}
+
+					@Override
+					public E next() {
+						return function.call(_iterator.next());
+					}
+
+					@Override
+					public void remove() {
+					}
+				};
+			}
+		};
+	}
+
+	public static <T> List<T> list(final Iterable<T> iterable) {
+		// any better way?
+		ArrayList<T> r = new ArrayList<T>();
+		for (T item : iterable) {
+			r.add(item);
+		}
+		return r;
 	}
 
 	public static <T> Iterable<T> chain(final Iterable<Iterable<T>> iterables) {
