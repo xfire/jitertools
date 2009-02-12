@@ -8,11 +8,11 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
-import de.downgra.jitertools.utils.IFunctor;
+import de.downgra.jitertools.utils.IBooleanFunctor;
 
 public class TestFilter {
 
-	class LT implements IFunctor<Integer> {
+	class LT implements IBooleanFunctor<Integer> {
 		private final int max;
 
 		public LT(int max) {
@@ -20,7 +20,7 @@ public class TestFilter {
 		}
 
 		@Override
-		public boolean call(Integer object) {
+		public Boolean call(Integer object) {
 			return object < max;
 		}
 	};

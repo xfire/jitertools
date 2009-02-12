@@ -1,5 +1,5 @@
 package de.downgra.jitertools.utils;
 
-public interface IFunctor<T> {
-	public boolean call(final T object);
+public interface IFunctor<E, T> {
+	public E call(final T object);
 }

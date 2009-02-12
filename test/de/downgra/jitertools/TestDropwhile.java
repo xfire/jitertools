@@ -7,10 +7,10 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
-import de.downgra.jitertools.utils.IFunctor;
+import de.downgra.jitertools.utils.IBooleanFunctor;
 
 public class TestDropwhile {
-	class LT implements IFunctor<Integer> {
+	class LT implements IBooleanFunctor<Integer> {
 		private int i;
 
 		public LT(final int i) {
@@ -18,7 +18,7 @@ public class TestDropwhile {
 		}
 
 		@Override
-		public boolean call(final Integer object) {
+		public Boolean call(final Integer object) {
 			return object < i;
 		}
 	};
