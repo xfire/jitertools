@@ -1,11 +1,14 @@
 package de.downgra.jitertools;
 
+import static de.downgra.jitertools.JIterTools.list;
+import static de.downgra.jitertools.JIterTools.map;
+import static de.downgra.jitertools.JIterTools.range;
+import static org.junit.Assert.assertArrayEquals;
+
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertArrayEquals;
 import org.junit.Test;
 
-import static de.downgra.jitertools.JIterTools.*;
 import de.downgra.jitertools.utils.IFunctor;
 
 public class TestMap {

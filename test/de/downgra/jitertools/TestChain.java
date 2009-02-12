@@ -8,8 +8,6 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
-import de.downgra.jitertools.JIterTools;
-
 public final class TestChain {
 
 	private void doTest(final Integer a[], final Integer b[], final Integer c[]) {

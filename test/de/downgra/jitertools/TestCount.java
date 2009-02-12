@@ -4,8 +4,6 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import de.downgra.jitertools.JIterTools;
-
 public class TestCount {
 
 	@Test
