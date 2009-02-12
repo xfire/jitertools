@@ -7,6 +7,48 @@ import de.downgra.jitertools.utils.IFunctor;
 
 public class JIterTools {
 
+	public static Iterable<Integer> range(final int end) {
+		return range(0, end, 1);
+	}
+
+	public static Iterable<Integer> range(final int start, final int end) {
+		return range(start, end, 1);
+	}
+
+	public static Iterable<Integer> range(final int start, final int end,
+			final int step) {
+		assert step != 0;
+		return new Iterable<Integer>() {
+			@Override
+			public Iterator<Integer> iterator() {
+				return new Iterator<Integer>() {
+					private int _current = start;
+
+					@Override
+					public boolean hasNext() {
+						if (step < 0) {
+							return _current > end;
+						} else {
+							return _current < end;
+						}
+					}
+
+					@Override
+					public Integer next() {
+						int tmp = _current;
+						_current += step;
+						return tmp;
+					}
+
+					@Override
+					public void remove() {
+					}
+				};
+			}
+
+		};
+	}
+
 	public static <T> Iterable<T> chain(final Iterable<Iterable<T>> iterables) {
 		if (!iterables.iterator().hasNext()) {
 			return new ArrayList<T>();
