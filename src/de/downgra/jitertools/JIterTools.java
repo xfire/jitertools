@@ -6,6 +6,7 @@ import java.util.List;
 
 import de.downgra.jitertools.utils.IBooleanFunctor;
 import de.downgra.jitertools.utils.IFunctor;
+import de.downgra.jitertools.utils.Pair;
 
 public class JIterTools {
 
@@ -84,6 +85,25 @@ public class JIterTools {
 			r.add(item);
 		}
 		return r;
+	}
+
+	public static <T> T reduce(final IFunctor<T, Pair<T, T>> function,
+			final Iterable<T> iterable) {
+		Iterator<T> it = iterable.iterator();
+		T res = it.next();
+		while (it.hasNext()) {
+			res = function.call(Pair.create(res, it.next()));
+		}
+		return res;
+	}
+
+	public static <T> T reduce(final IFunctor<T, Pair<T, T>> function,
+			final Iterable<T> iterable, final T initial) {
+		T res = initial;
+		for (T item : iterable) {
+			res = function.call(Pair.create(res, item));
+		}
+		return res;
 	}
 
 	public static <T> Iterable<T> chain(final Iterable<Iterable<T>> iterables) {
