@@ -6,6 +6,7 @@ import java.util.List;
 
 import de.downgra.jitertools.utils.IBooleanFunctor;
 import de.downgra.jitertools.utils.IFunctor;
+import de.downgra.jitertools.utils.IteratorFunctor;
 import de.downgra.jitertools.utils.Pair;
 
 public class JIterTools {
@@ -343,6 +344,41 @@ public class JIterTools {
 						T tmp = _last;
 						_last = null;
 						return tmp;
+					}
+
+					@Override
+					public void remove() {
+					}
+				};
+			}
+		};
+	}
+
+	public static <T> Iterable<List<T>> zip(
+			final Iterable<Iterable<T>> iterables) {
+		return new Iterable<List<T>>() {
+			@Override
+			public Iterator<List<T>> iterator() {
+				return new Iterator<List<T>>() {
+					private List<Iterator<T>> _outer = list(map(
+							new IteratorFunctor<T>(), iterables));
+
+					@Override
+					public boolean hasNext() {
+						for (Iterator<T> inner : _outer) {
+							if (!inner.hasNext())
+								return false;
+						}
+						return true && _outer.size() != 0;
+					}
+
+					@Override
+					public List<T> next() {
+						ArrayList<T> ret = new ArrayList<T>(_outer.size());
+						for (Iterator<T> inner : _outer) {
+							ret.add(inner.next());
+						}
+						return ret;
 					}
 
 					@Override
