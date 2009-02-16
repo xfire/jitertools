@@ -1,11 +1,12 @@
 package de.downgra.jitertools;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-import de.downgra.jitertools.utils.IBooleanFunctor;
 import de.downgra.jitertools.utils.IFunctor;
+import de.downgra.jitertools.utils.IPredicate;
 import de.downgra.jitertools.utils.IteratorFunctor;
 import de.downgra.jitertools.utils.Pair;
 
@@ -216,7 +217,7 @@ public class JIterTools {
 
 	}
 
-	public static <T> Iterable<T> dropwhile(final IBooleanFunctor<T> predicate,
+	public static <T> Iterable<T> dropwhile(final IPredicate<T> predicate,
 			final Iterable<T> iterable) {
 		return new Iterable<T>() {
 			@Override
@@ -262,7 +263,7 @@ public class JIterTools {
 		};
 	}
 
-	public static <T> Iterable<T> filter(final IBooleanFunctor<T> predicate,
+	public static <T> Iterable<T> filter(final IPredicate<T> predicate,
 			final Iterable<T> iterable) {
 		return new Iterable<T>() {
 			@Override
@@ -306,9 +307,9 @@ public class JIterTools {
 		};
 	}
 
-	public static <T> Iterable<T> filterfalse(
-			final IBooleanFunctor<T> predicate, final Iterable<T> iterable) {
-		return filter(new IBooleanFunctor<T>() {
+	public static <T> Iterable<T> filterfalse(final IPredicate<T> predicate,
+			final Iterable<T> iterable) {
+		return filter(new IPredicate<T>() {
 			@Override
 			public Boolean call(T object) {
 				return !predicate.call(object);
@@ -316,7 +317,7 @@ public class JIterTools {
 		}, iterable);
 	}
 
-	public static <T> Iterable<T> takewhile(final IBooleanFunctor<T> predicate,
+	public static <T> Iterable<T> takewhile(final IPredicate<T> predicate,
 			final Iterable<T> iterable) {
 		return new Iterable<T>() {
 			@Override

@@ -8,11 +8,11 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
-import de.downgra.jitertools.utils.IBooleanFunctor;
+import de.downgra.jitertools.utils.IPredicate;
 
 public class TestFilter {
 
-	class LT implements IBooleanFunctor<Integer> {
+	class LT implements IPredicate<Integer> {
 		private final int max;
 
 		public LT(int max) {

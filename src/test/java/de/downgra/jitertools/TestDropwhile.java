@@ -7,10 +7,10 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
-import de.downgra.jitertools.utils.IBooleanFunctor;
+import de.downgra.jitertools.utils.IPredicate;
 
 public class TestDropwhile {
-	class LT implements IBooleanFunctor<Integer> {
+	class LT implements IPredicate<Integer> {
 		private int i;
 
 		public LT(final int i) {
