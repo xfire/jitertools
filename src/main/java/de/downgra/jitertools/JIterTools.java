@@ -428,4 +428,53 @@ public class JIterTools {
 			}
 		};
 	}
+
+    public static <T> Iterable<T> repeat(final T object) {
+        return new Iterable<T>() {
+            @Override
+            public Iterator<T> iterator() {
+                return new Iterator<T>() {
+                    @Override
+                    public boolean hasNext() {
+                        return true;
+                    }
+
+                    @Override
+                    public T next() {
+                        return object;
+                    }
+
+                    @Override
+                    public void remove() {
+                    }
+                };
+            }
+        };
+    }
+
+    public static <T> Iterable<T> repeat(final T object, final int times) {
+        return new Iterable<T>() {
+            @Override
+            public Iterator<T> iterator() {
+                return new Iterator<T>() {
+                    private int _count = times;
+
+                    @Override
+                    public boolean hasNext() {
+                        return _count-- > 0;
+                    }
+
+                    @Override
+                    public T next() {
+                        return object;
+                    }
+
+                    @Override
+                    public void remove() {
+                    }
+                };
+            }
+        };
+    }
+
 }
