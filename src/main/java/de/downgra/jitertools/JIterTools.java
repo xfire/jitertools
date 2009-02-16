@@ -387,5 +387,45 @@ public class JIterTools {
 				};
 			}
 		};
+    }
+
+	public static <T> Iterable<List<T>> zip(
+			final Iterable<Iterable<T>> iterables,
+            final T filler) {
+		return new Iterable<List<T>>() {
+			@Override
+			public Iterator<List<T>> iterator() {
+				return new Iterator<List<T>>() {
+					private List<Iterator<T>> _outer = list(map(
+							new IteratorFunctor<T>(), iterables));
+
+					@Override
+					public boolean hasNext() {
+						for (Iterator<T> inner : _outer) {
+							if (inner.hasNext())
+								return true;
+						}
+						return false;
+					}
+
+					@Override
+					public List<T> next() {
+						ArrayList<T> ret = new ArrayList<T>(_outer.size());
+						for (Iterator<T> inner : _outer) {
+                            if(inner.hasNext()) {
+                                ret.add(inner.next());
+                            } else {
+                                ret.add(filler);
+                            }
+						}
+						return ret;
+					}
+
+					@Override
+					public void remove() {
+					}
+				};
+			}
+		};
 	}
 }

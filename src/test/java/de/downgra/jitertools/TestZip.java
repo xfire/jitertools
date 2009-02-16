@@ -40,10 +40,34 @@ public class TestZip {
 	}
 
 	@Test
+	public void twoFiller() {
+		ArrayList<Integer[]> result = new ArrayList<Integer[]>();
+		for (List<Integer> part : zip(two(Arrays.asList(1, 2, 3), Arrays
+				.asList(4, 5, 6)), 42)) {
+			result.add(part.toArray(new Integer[0]));
+		}
+		assertArrayEquals(new int[][] { { 1, 4 }, { 2, 5 }, { 3, 6 } }, result
+				.toArray());
+	}
+
+	@Test
 	public void three() {
 		ArrayList<Integer[]> result = new ArrayList<Integer[]>();
 		for (List<Integer> part : zip(three(Arrays.asList(1, 2, 3), Arrays
 				.asList(4, 5, 6), Arrays.asList(7, 8, 9)))) {
+			result.add(part.toArray(new Integer[0]));
+		}
+		assertArrayEquals(
+				new int[][] { { 1, 4, 7 }, { 2, 5, 8 }, { 3, 6, 9 } }, result
+						.toArray());
+
+	}
+
+	@Test
+	public void threeFiller() {
+		ArrayList<Integer[]> result = new ArrayList<Integer[]>();
+		for (List<Integer> part : zip(three(Arrays.asList(1, 2, 3), Arrays
+				.asList(4, 5, 6), Arrays.asList(7, 8, 9)), 42)) {
 			result.add(part.toArray(new Integer[0]));
 		}
 		assertArrayEquals(
@@ -60,6 +84,14 @@ public class TestZip {
 		}
 	}
 
+	@Test
+	public void emptyFiller() {
+		for (@SuppressWarnings("unused")
+		List<Integer> part : zip(new ArrayList<Iterable<Integer>>(), 42)) {
+			fail();
+		}
+	}
+
     @Test
     public void irregularTwo() {
         ArrayList<Integer[]> result = new ArrayList<Integer[]>();
@@ -70,6 +102,15 @@ public class TestZip {
     }
 
     @Test
+    public void irregularTwoFiller() {
+        ArrayList<Integer[]> result = new ArrayList<Integer[]>();
+        for (List<Integer> part : zip(two(Arrays.asList(1, 2, 3), Arrays.asList(4, 5)), 42)) {
+            result.add(part.toArray(new Integer[0]));
+        }
+        assertArrayEquals(new int[][] { {1, 4}, {2, 5}, {3, 42} }, result.toArray());
+    }
+
+    @Test
     public void irregularThree() {
         ArrayList<Integer[]> result = new ArrayList<Integer[]>();
         for (List<Integer> part : zip(three(Arrays.asList(1, 2), Arrays.asList(4, 5, 6),
@@ -77,5 +118,15 @@ public class TestZip {
             result.add(part.toArray(new Integer[0]));
         }
         assertArrayEquals(new int[][] { {1, 4, 7} }, result.toArray());
+    }
+
+    @Test
+    public void irregularThreeFiller() {
+        ArrayList<Integer[]> result = new ArrayList<Integer[]>();
+        for (List<Integer> part : zip(three(Arrays.asList(1, 2), Arrays.asList(4, 5, 6),
+                        Arrays.asList(7)), 42)) {
+            result.add(part.toArray(new Integer[0]));
+        }
+        assertArrayEquals(new int[][] { {1, 4, 7}, {2, 5, 42}, {42, 6, 42} }, result.toArray());
     }
 }
