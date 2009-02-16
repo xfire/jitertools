@@ -59,4 +59,23 @@ public class TestZip {
 			fail();
 		}
 	}
+
+    @Test
+    public void irregularTwo() {
+        ArrayList<Integer[]> result = new ArrayList<Integer[]>();
+        for (List<Integer> part : zip(two(Arrays.asList(1, 2, 3), Arrays.asList(4, 5)))) {
+            result.add(part.toArray(new Integer[0]));
+        }
+        assertArrayEquals(new int[][] { {1, 4}, {2, 5} }, result.toArray());
+    }
+
+    @Test
+    public void irregularThree() {
+        ArrayList<Integer[]> result = new ArrayList<Integer[]>();
+        for (List<Integer> part : zip(three(Arrays.asList(1, 2), Arrays.asList(4, 5, 6),
+                        Arrays.asList(7)))) {
+            result.add(part.toArray(new Integer[0]));
+        }
+        assertArrayEquals(new int[][] { {1, 4, 7} }, result.toArray());
+    }
 }
