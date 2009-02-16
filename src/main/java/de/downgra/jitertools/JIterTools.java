@@ -107,6 +107,10 @@ public class JIterTools {
 		return res;
 	}
 
+	public static <T> Iterable<T> chain(final Iterable<T>... iterables) {
+		return chain(Arrays.asList(iterables));
+	}
+
 	public static <T> Iterable<T> chain(final Iterable<Iterable<T>> iterables) {
 		if (!iterables.iterator().hasNext()) {
 			return new ArrayList<T>();
@@ -354,6 +358,10 @@ public class JIterTools {
 		};
 	}
 
+	public static <T> Iterable<List<T>> zip(final Iterable<T>... iterables) {
+		return zip(Arrays.asList(iterables));
+	}
+
 	public static <T> Iterable<List<T>> zip(
 			final Iterable<Iterable<T>> iterables) {
 		return new Iterable<List<T>>() {
@@ -387,11 +395,15 @@ public class JIterTools {
 				};
 			}
 		};
-    }
+	}
 
-	public static <T> Iterable<List<T>> zip(
-			final Iterable<Iterable<T>> iterables,
-            final T filler) {
+	public static <T> Iterable<List<T>> zip(final T filler,
+			final Iterable<T>... iterables) {
+		return zip(filler, Arrays.asList(iterables));
+	}
+
+	public static <T> Iterable<List<T>> zip(final T filler,
+			final Iterable<Iterable<T>> iterables) {
 		return new Iterable<List<T>>() {
 			@Override
 			public Iterator<List<T>> iterator() {
@@ -412,11 +424,11 @@ public class JIterTools {
 					public List<T> next() {
 						ArrayList<T> ret = new ArrayList<T>(_outer.size());
 						for (Iterator<T> inner : _outer) {
-                            if(inner.hasNext()) {
-                                ret.add(inner.next());
-                            } else {
-                                ret.add(filler);
-                            }
+							if (inner.hasNext()) {
+								ret.add(inner.next());
+							} else {
+								ret.add(filler);
+							}
 						}
 						return ret;
 					}
