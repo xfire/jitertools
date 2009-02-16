@@ -490,4 +490,35 @@ public class JIterTools {
 		};
 	}
 
+	public static <T> Iterable<Pair<Integer, T>> enumerate(
+			final Iterable<T> iterable) {
+		return enumerate(iterable, 0);
+	}
+
+	public static <T> Iterable<Pair<Integer, T>> enumerate(
+			final Iterable<T> iterable, final int start) {
+		return new Iterable<Pair<Integer, T>>() {
+			@Override
+			public Iterator<Pair<Integer, T>> iterator() {
+				return new Iterator<Pair<Integer, T>>() {
+					private Iterator<T> _iterator = iterable.iterator();
+					private int _counter = start;
+
+					@Override
+					public boolean hasNext() {
+						return _iterator.hasNext();
+					}
+
+					@Override
+					public Pair<Integer, T> next() {
+						return Pair.create(_counter++, _iterator.next());
+					}
+
+					@Override
+					public void remove() {
+					}
+				};
+			}
+		};
+	}
 }
