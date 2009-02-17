@@ -474,11 +474,12 @@ public class JIterTools {
 
 					@Override
 					public boolean hasNext() {
-						return _count-- > 0;
+						return _count > 0;
 					}
 
 					@Override
 					public T next() {
+						_count--;
 						return object;
 					}
 
