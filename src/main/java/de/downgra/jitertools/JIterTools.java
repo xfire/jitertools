@@ -539,4 +539,22 @@ public class JIterTools {
 		}
 		return true;
 	}
+
+	/**
+	 * Return true if predicate(x) is true for at least one element in iterable.
+	 * 
+	 * @param <T>
+	 * @param predicate
+	 * @param iterable
+	 * @return
+	 */
+	public static <T> boolean any(final IPredicate<T> predicate,
+			final Iterable<T> iterable) {
+		for (@SuppressWarnings("unused")
+		final T Item : filter(predicate, iterable)) {
+			return true;
+		}
+		return false;
+	}
+
 }
