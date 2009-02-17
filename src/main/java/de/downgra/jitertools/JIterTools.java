@@ -607,4 +607,20 @@ public class JIterTools {
 		}
 		return count;
 	}
+
+	/**
+	 * Returns the iterable n times.
+	 * 
+	 * @param iterable
+	 *            the iterable to repeat
+	 * @param n
+	 *            repeat how many times
+	 * 
+	 * @param <T>
+	 * @return
+	 */
+	public static <T> Iterable<T> ncycles(final Iterable<T> iterable,
+			final int n) {
+		return chain(repeat(iterable, n));
+	}
 }
