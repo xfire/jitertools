@@ -574,4 +574,19 @@ public class JIterTools {
 		return true;
 	}
 
+	/**
+	 * Returns all elements in iterable and then returns padding object
+	 * indefinitely.
+	 * 
+	 * @param iterable
+	 * @param padding
+	 * 
+	 * @param <T>
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public static <T> Iterable<T> pad(final Iterable<T> iterable,
+			final T padding) {
+		return chain(iterable, repeat(padding));
+	}
 }
