@@ -589,4 +589,22 @@ public class JIterTools {
 			final T padding) {
 		return chain(iterable, repeat(padding));
 	}
+
+	/**
+	 * Count how many times the predicate is true in the iterable.
+	 * 
+	 * @param <T>
+	 * @param predicate
+	 * @param iterable
+	 * @return
+	 */
+	public static <T> int quantify(final IPredicate<T> predicate,
+			final Iterable<T> iterable) {
+		int count = 0;
+		for (@SuppressWarnings("unused")
+		final T Item : filter(predicate, iterable)) {
+			count++;
+		}
+		return count;
+	}
 }
