@@ -557,4 +557,21 @@ public class JIterTools {
 		return false;
 	}
 
+	/**
+	 * Return true if predicate(x) is false for every element in iterable.
+	 * 
+	 * @param <T>
+	 * @param predicate
+	 * @param iterable
+	 * @return
+	 */
+	public static <T> boolean no(final IPredicate<T> predicate,
+			final Iterable<T> iterable) {
+		for (@SuppressWarnings("unused")
+		final T item : filter(predicate, iterable)) {
+			return false;
+		}
+		return true;
+	}
+
 }
