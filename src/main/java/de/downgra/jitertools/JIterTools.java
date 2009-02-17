@@ -124,21 +124,21 @@ public class JIterTools {
 								.iterator();
 						private Iterator<T> _current = _outer.next().iterator();
 
+						private void consume() {
+							while (!_current.hasNext() && _outer.hasNext()) {
+								_current = _outer.next().iterator();
+							}
+						}
+
 						@Override
 						public boolean hasNext() {
-							if (!_current.hasNext() && _outer.hasNext()) {
-								_current = _outer.next().iterator();
-								return _current.hasNext();
-							}
+							consume();
 							return _current.hasNext();
 						}
 
 						@Override
 						public T next() {
-							if (!_current.hasNext() && _outer.hasNext()) {
-								_current = _outer.next().iterator();
-								return _current.next();
-							}
+							consume();
 							return _current.next();
 						}
 
