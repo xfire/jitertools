@@ -619,4 +619,69 @@ public class JIterTools {
 			final int n) {
 		return chain(repeat(iterable, n));
 	}
+
+	public static <T> Iterable<T> slice(final Iterable<T> iterable,
+			final int stop) {
+		return slice(iterable, 0, stop, 1);
+	}
+
+	public static <T> Iterable<T> slice(final Iterable<T> iterable,
+			final int start, final int stop) {
+		return slice(iterable, start, stop, 1);
+	}
+
+	public static <T> Iterable<T> slice(final Iterable<T> iterable,
+			final int start, final int stop, final int step) {
+		assert step > 0;
+		assert start <= stop;
+		return new Iterable<T>() {
+			@Override
+			public Iterator<T> iterator() {
+				return new Iterator<T>() {
+					final Iterator<Integer> _counter = range(start, stop < 0 ? Integer.MAX_VALUE : stop, step)
+							.iterator();
+					final Iterator<Pair<Integer, T>> _iterator = enumerate(
+							iterable).iterator();
+					Integer _current_counter = _counter.hasNext() ? _counter
+							.next() : null;
+					T _last = null;
+
+					private final void consume() {
+						if (_last == null) {
+							while (_iterator.hasNext()
+									&& _current_counter != null) {
+								Pair<Integer, T> p = _iterator.next();
+								if (p.getFirst() == _current_counter) {
+									_last = p.getSecond();
+									if (_counter.hasNext()) {
+										_current_counter = _counter.next();
+									}
+									return;
+								}
+							}
+						}
+					}
+
+					@Override
+					public boolean hasNext() {
+						consume();
+						return _last != null;
+					}
+
+					@Override
+					public T next() {
+						consume();
+						T ret = _last;
+						_last = null;
+						return ret;
+					}
+
+					@Override
+					public void remove() {
+					}
+				};
+			}
+		};
+	}
+
 }
