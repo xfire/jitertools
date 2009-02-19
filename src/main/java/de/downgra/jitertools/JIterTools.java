@@ -113,42 +113,38 @@ public class JIterTools {
 	}
 
 	public static <T> Iterable<T> chain(final Iterable<Iterable<T>> iterables) {
-		if (!iterables.iterator().hasNext()) {
-			return new ArrayList<T>();
-		} else {
-			return new Iterable<T>() {
-				@Override
-				public Iterator<T> iterator() {
-					return new Iterator<T>() {
-						private Iterator<Iterable<T>> _outer = iterables
-								.iterator();
-						private Iterator<T> _current = _outer.next().iterator();
+		return new Iterable<T>() {
+			@Override
+			public Iterator<T> iterator() {
+				return new Iterator<T>() {
+					private Iterator<Iterable<T>> _outer = iterables.iterator();
+					private Iterator<T> _current = _outer.hasNext() ? _outer
+							.next().iterator() : new ArrayList<T>().iterator();
 
-						private void consume() {
-							while (!_current.hasNext() && _outer.hasNext()) {
-								_current = _outer.next().iterator();
-							}
+					private void consume() {
+						while (!_current.hasNext() && _outer.hasNext()) {
+							_current = _outer.next().iterator();
 						}
+					}
 
-						@Override
-						public boolean hasNext() {
-							consume();
-							return _current.hasNext();
-						}
+					@Override
+					public boolean hasNext() {
+						consume();
+						return _current.hasNext();
+					}
 
-						@Override
-						public T next() {
-							consume();
-							return _current.next();
-						}
+					@Override
+					public T next() {
+						consume();
+						return _current.next();
+					}
 
-						@Override
-						public void remove() {
-						}
-					};
-				}
-			};
-		}
+					@Override
+					public void remove() {
+					}
+				};
+			}
+		};
 	}
 
 	public static Iterable<Integer> count() {
