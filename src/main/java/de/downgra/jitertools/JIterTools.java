@@ -608,7 +608,6 @@ public class JIterTools {
 
     public static <T> Iterable<T> slice(final Iterable<T> iterable, final int start, final int stop, final int step) {
         assert step > 0;
-        assert start <= stop;
         return new Iterable<T>() {
             @Override
             public Iterator<T> iterator() {
