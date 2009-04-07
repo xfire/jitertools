@@ -1,4 +1,4 @@
-package de.downgra.jitertools.utils;
+package de.downgra.jitertools;
 
 import java.util.Iterator;
 

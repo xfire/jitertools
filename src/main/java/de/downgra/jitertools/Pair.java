@@ -1,4 +1,4 @@
-package de.downgra.jitertools.utils;
+package de.downgra.jitertools;
 
 public class Pair<F, S> {
     private final F first;

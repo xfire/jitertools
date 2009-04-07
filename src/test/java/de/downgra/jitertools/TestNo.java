@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import de.downgra.jitertools.utils.IPredicate;
 
 public class TestNo {
     class LT implements IPredicate<Integer> {

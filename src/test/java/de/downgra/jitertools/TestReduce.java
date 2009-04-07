@@ -9,8 +9,6 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
-import de.downgra.jitertools.utils.IFunctor;
-import de.downgra.jitertools.utils.Pair;
 
 public class TestReduce {
 

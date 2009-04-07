@@ -7,7 +7,6 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
-import de.downgra.jitertools.utils.IPredicate;
 
 public class TestDropwhile {
     class LT implements IPredicate<Integer> {

@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import de.downgra.jitertools.utils.IFunctor;
 
 public class TestMap {
     class DoSomeMath implements IFunctor<Integer, Integer> {

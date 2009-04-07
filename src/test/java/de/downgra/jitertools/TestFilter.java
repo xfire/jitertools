@@ -8,7 +8,6 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
-import de.downgra.jitertools.utils.IPredicate;
 
 public class TestFilter {
 

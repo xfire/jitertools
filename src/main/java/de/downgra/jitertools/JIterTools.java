@@ -5,10 +5,6 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-import de.downgra.jitertools.utils.IFunctor;
-import de.downgra.jitertools.utils.IPredicate;
-import de.downgra.jitertools.utils.IteratorFunctor;
-import de.downgra.jitertools.utils.Pair;
 
 public class JIterTools {
 
