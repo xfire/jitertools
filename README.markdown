@@ -41,3 +41,4 @@ license
   [python]:     http://www.python.org/                          "python"
   [itertools]:  http://docs.python.org/library/itertools.html   "python itertools package"
   [hgrail]:     http://en.wikipedia.org/wiki/Monty_Python_and_the_Holy_Grail "_the_ holy grail"
+  [mvn]:        http://maven.apache.org/                        "maven2"
