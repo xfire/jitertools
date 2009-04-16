@@ -8,6 +8,8 @@ import java.util.List;
 
 public class JIterTools {
 
+    private JIterTools() { /* don't mess with me */ }
+
     /**
      * Return a iterable which generate an arithmetic progression of integers
      * from 0 to stop - 1 in steps of 1.
