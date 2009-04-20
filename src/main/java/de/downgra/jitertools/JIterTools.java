@@ -942,7 +942,7 @@ public class JIterTools {
             }
         };
     }
-    
+
     /**
      * Advance the iterator n-steps ahead.
      * 
@@ -962,5 +962,42 @@ public class JIterTools {
                 return iterator;
             }
         };
+    }
+
+    /**
+     * Returns the n'th item from the iterable or {@code null}.
+     * 
+     * @param <T> type
+     * @param iterable iterable of type T
+     * @param n number of the item
+     * @return the n'th item or {@code null}
+     */
+    public static <T> T nth(final Iterable<T> iterable, int n) {
+        return nth(iterable, n, null);
+    }
+
+    /**
+     * Returns the n'th item from the iterable or {@code defaultValue}.
+     * 
+     * @param <T> type
+     * @param iterable iterable of type T
+     * @param n number of the item
+     * @param defaultValue the default value to return, if the n'th element can
+     *            not be obtained.
+     * @return the n'th item or {@code defaultValue}
+     */
+    public static <T> T nth(final Iterable<T> iterable, int n, final T defaultValue) {
+        if (n > 0) {
+            Iterator<T> i = consume(iterable, n).iterator();
+            if (i.hasNext()) {
+                return i.next();
+            }
+        } else if (n == 0) {
+            Iterator<T> i = iterable.iterator();
+            if (i.hasNext()) {
+                return i.next();
+            }
+        }
+        return defaultValue;
     }
 }
