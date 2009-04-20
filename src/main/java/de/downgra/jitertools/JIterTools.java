@@ -900,4 +900,26 @@ public class JIterTools {
         };
     }
 
+    /**
+     * Return function(0), function(1), ...
+     * 
+     * @param <T> type of the returned iterable
+     * @param function the function
+     * @return iterable of type T
+     */
+    public static <T> Iterable<T> tabulate(final IFunctor<T, Integer> function) {
+        return tabulate(function, 0);
+    }
+
+    /**
+     * Return function(count), function(count + 1), ...
+     * 
+     * @param <T> type of the returned iterable
+     * @param function the function
+     * @param start the value to begin counting
+     * @return iterable of type T
+     */
+    public static <T> Iterable<T> tabulate(final IFunctor<T, Integer> function, final int start) {
+        return map(function, count(start));
+    }
 }
