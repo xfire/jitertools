@@ -8,7 +8,6 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
-
 public class TestFilter {
 
     class LT implements IPredicate<Integer> {

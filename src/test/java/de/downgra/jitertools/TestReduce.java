@@ -9,7 +9,6 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
-
 public class TestReduce {
 
     class Sum implements IFunctor<Integer, Pair<Integer, Integer>> {

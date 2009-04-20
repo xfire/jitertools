@@ -10,7 +10,6 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
-
 public class TestEnumerate {
 
     @Test

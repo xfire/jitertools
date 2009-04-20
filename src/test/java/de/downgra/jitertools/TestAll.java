@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-
 public class TestAll {
 
     class LT implements IPredicate<Integer> {

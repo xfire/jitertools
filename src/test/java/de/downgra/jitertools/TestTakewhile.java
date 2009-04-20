@@ -8,7 +8,6 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
-
 public class TestTakewhile {
     class LT implements IPredicate<Integer> {
         private int i;

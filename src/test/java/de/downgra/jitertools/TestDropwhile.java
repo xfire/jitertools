@@ -7,7 +7,6 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
-
 public class TestDropwhile {
     class LT implements IPredicate<Integer> {
         private int i;

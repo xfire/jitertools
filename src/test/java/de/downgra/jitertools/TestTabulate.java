@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-
 public class TestTabulate {
     class Mul implements IFunctor<Integer, Integer> {
         @Override

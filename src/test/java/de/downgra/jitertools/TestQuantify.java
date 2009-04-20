@@ -8,7 +8,6 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
-
 public class TestQuantify {
 
     class EQ implements IPredicate<String> {

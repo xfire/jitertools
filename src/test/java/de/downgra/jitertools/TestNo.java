@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-
 public class TestNo {
     class LT implements IPredicate<Integer> {
         private final int comparator;
