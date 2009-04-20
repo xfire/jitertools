@@ -922,4 +922,45 @@ public class JIterTools {
     public static <T> Iterable<T> tabulate(final IFunctor<T, Integer> function, final int start) {
         return map(function, count(start));
     }
+
+    /**
+     * Consume the whole iterable.
+     * 
+     * @param <T> type
+     * @param iterable iterable of type T
+     * @return iterable of type T
+     */
+    public static <T> Iterable<T> consume(final Iterable<T> iterable) {
+        final Iterator<T> iterator = iterable.iterator();
+        while (iterator.hasNext()) {
+            iterator.next();
+        }
+        return new Iterable<T>() {
+            @Override
+            public Iterator<T> iterator() {
+                return iterator;
+            }
+        };
+    }
+    
+    /**
+     * Advance the iterator n-steps ahead.
+     * 
+     * @param <T> type
+     * @param iterable iterable of type T
+     * @param n number of elements to consume
+     * @return iterable of type T
+     */
+    public static <T> Iterable<T> consume(final Iterable<T> iterable, int n) {
+        final Iterator<T> iterator = iterable.iterator();
+        while (n-- > 0 && iterator.hasNext()) {
+            iterator.next();
+        }
+        return new Iterable<T>() {
+            @Override
+            public Iterator<T> iterator() {
+                return iterator;
+            }
+        };
+    }
 }
