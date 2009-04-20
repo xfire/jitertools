@@ -5,10 +5,11 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-
 public class JIterTools {
 
-    private JIterTools() { /* don't mess with me */ }
+    private JIterTools() {
+        /* don't mess with me */
+    }
 
     /**
      * Return a iterable which generate an arithmetic progression of integers
@@ -16,8 +17,7 @@ public class JIterTools {
      * 
      * range(5) -> 0, 1, 2, 3, 4
      * 
-     * @param stop
-     *            stop value
+     * @param stop stop value
      * @return iterable of integers
      */
     public static Iterable<Integer> range(final int stop) {
@@ -30,10 +30,8 @@ public class JIterTools {
      * 
      * range(7, 10) -> 7, 8, 9
      * 
-     * @param start
-     *            start value
-     * @param stop
-     *            stop value
+     * @param start start value
+     * @param stop stop value
      * @return iterable of integers
      */
     public static Iterable<Integer> range(final int start, final int stop) {
@@ -48,12 +46,9 @@ public class JIterTools {
      * 
      * range(4, 9, 2) -> 4, 6, 8 range(9, 0, -2) -> 9, 7, 5, 3, 1
      * 
-     * @param start
-     *            start value
-     * @param stop
-     *            stop value
-     * @param step
-     *            increment or decrement
+     * @param start start value
+     * @param stop stop value
+     * @param step increment or decrement
      * @return list of integers
      */
     public static Iterable<Integer> range(final int start, final int stop, final int step) {
@@ -92,14 +87,10 @@ public class JIterTools {
     /**
      * Return the iterable where the function is applied to each element.
      * 
-     * @param <E>
-     *            type of the returned iterable
-     * @param <T>
-     *            type of the given iterable
-     * @param function
-     *            the function
-     * @param iterable
-     *            an iterable of type T
+     * @param <E> type of the returned iterable
+     * @param <T> type of the given iterable
+     * @param function the function
+     * @param iterable an iterable of type T
      * @return iterable of type E
      */
     public static <E, T> Iterable<E> map(final IFunctor<E, T> function, final Iterable<T> iterable) {
@@ -130,10 +121,8 @@ public class JIterTools {
     /**
      * Convert a iterable to a List.
      * 
-     * @param <T>
-     *            the type
-     * @param iterable
-     *            of type T
+     * @param <T> the type
+     * @param iterable of type T
      * @return List of type T
      */
     public static <T> List<T> list(final Iterable<T> iterable) {
@@ -149,12 +138,10 @@ public class JIterTools {
      * Apply a function of two arguments cumulatively to the items of a sequence
      * from left to right.
      * 
-     * @param <T>
-     *            type
-     * @param function
-     *            a functor of return type T and parameter type Pair&lt;T, T&gt;
-     * @param iterable
-     *            an iterable of type T
+     * @param <T> type
+     * @param function a functor of return type T and parameter type Pair&lt;T,
+     *            T&gt;
+     * @param iterable an iterable of type T
      * @return the reduced value
      */
     public static <T> T reduce(final IFunctor<T, Pair<T, T>> function, final Iterable<T> iterable) {
@@ -170,14 +157,11 @@ public class JIterTools {
      * Apply a function of two arguments cumulatively to the items of a sequence
      * from left to right.
      * 
-     * @param <T>
-     *            type
-     * @param function
-     *            a functor of return type T and parameter type Pair&lt;T, T&gt;
-     * @param iterable
-     *            an iterable of type T
-     * @param initial
-     *            is placed before the items in iterable
+     * @param <T> type
+     * @param function a functor of return type T and parameter type Pair&lt;T,
+     *            T&gt;
+     * @param iterable an iterable of type T
+     * @param initial is placed before the items in iterable
      * @return the reduced value
      */
     public static <T> T reduce(final IFunctor<T, Pair<T, T>> function, final Iterable<T> iterable, final T initial) {
@@ -193,10 +177,8 @@ public class JIterTools {
      * it is exhausted, then elements from the next iterable, until all of the
      * iterables are exhausted.
      * 
-     * @param <T>
-     *            type
-     * @param iterables
-     *            1 to n Iterable&lt;T&gt; objects
+     * @param <T> type
+     * @param iterables 1 to n Iterable&lt;T&gt; objects
      * @return one iterable of type T
      */
     public static <T> Iterable<T> chain(final Iterable<T>... iterables) {
@@ -208,10 +190,8 @@ public class JIterTools {
      * it is exhausted, then elements from the next iterable, until all of the
      * iterables are exhausted.
      * 
-     * @param <T>
-     *            type
-     * @param iterables
-     *            iterable of Iterable&lt;T&gt; objects
+     * @param <T> type
+     * @param iterables iterable of Iterable&lt;T&gt; objects
      * @return one iterable of type T
      */
     public static <T> Iterable<T> chain(final Iterable<Iterable<T>> iterables) {
@@ -260,8 +240,7 @@ public class JIterTools {
     /**
      * Return an iterable of consecutive integers starting from startval.
      * 
-     * @param startval
-     *            first value to begin counting
+     * @param startval first value to begin counting
      * @return iterable of consecutive integers
      */
     public static Iterable<Integer> count(final int startval) {
@@ -296,10 +275,8 @@ public class JIterTools {
      * Note, this function may require significant auxiliary storage (depending
      * on the length of the iterable).
      * 
-     * @param <T>
-     *            type
-     * @param iterable
-     *            the iterable for cycling
+     * @param <T> type
+     * @param iterable the iterable for cycling
      * @return indefinitely iterable of type T
      */
     public static <T> Iterable<T> cycle(final Iterable<T> iterable) {
@@ -343,12 +320,9 @@ public class JIterTools {
      * Drop items from the iterable while predicate(item) is true. Afterwards,
      * return every element until the iterable is exhausted.
      * 
-     * @param <T>
-     *            type
-     * @param predicate
-     *            the predicate functor
-     * @param iterable
-     *            the iterable of type T
+     * @param <T> type
+     * @param predicate the predicate functor
+     * @param iterable the iterable of type T
      * @return iterable of type T
      */
     public static <T> Iterable<T> dropwhile(final IPredicate<T> predicate, final Iterable<T> iterable) {
@@ -400,12 +374,9 @@ public class JIterTools {
      * Return an iterable with those items of sequence for which predicate(item)
      * is true.
      * 
-     * @param <T>
-     *            type
-     * @param predicate
-     *            the predicate functor
-     * @param iterable
-     *            the iterable of type T
+     * @param <T> type
+     * @param predicate the predicate functor
+     * @param iterable the iterable of type T
      * @return iterable of type T
      */
     public static <T> Iterable<T> filter(final IPredicate<T> predicate, final Iterable<T> iterable) {
@@ -455,12 +426,9 @@ public class JIterTools {
      * Return an iterable with those items of sequence for which predicate(item)
      * is false.
      * 
-     * @param <T>
-     *            type
-     * @param predicate
-     *            the predicate functor
-     * @param iterable
-     *            the iterable of type T
+     * @param <T> type
+     * @param predicate the predicate functor
+     * @param iterable the iterable of type T
      * @return iterable of type T
      */
     public static <T> Iterable<T> filterfalse(final IPredicate<T> predicate, final Iterable<T> iterable) {
@@ -476,12 +444,9 @@ public class JIterTools {
      * Return successive entries from an iterable as long as the predicate
      * evaluates to true for each entry.
      * 
-     * @param <T>
-     *            type
-     * @param predicate
-     *            the predicate functor
-     * @param iterable
-     *            the iterable of type T
+     * @param <T> type
+     * @param predicate the predicate functor
+     * @param iterable the iterable of type T
      * @return iterable of type T
      */
     public static <T> Iterable<T> takewhile(final IPredicate<T> predicate, final Iterable<T> iterable) {
@@ -530,10 +495,8 @@ public class JIterTools {
      * Iteration continues until the shortest iterable is exhausted. All
      * trailing items of longer iterables are lost.
      * 
-     * @param <T>
-     *            type
-     * @param iterables
-     *            1 to n Iterable&lt;T&gt; objects
+     * @param <T> type
+     * @param iterables 1 to n Iterable&lt;T&gt; objects
      * @return iterable of lists of type T
      */
     public static <T> Iterable<List<T>> zip(final Iterable<T>... iterables) {
@@ -545,10 +508,8 @@ public class JIterTools {
      * Iteration continues until the shortest iterable is exhausted. All
      * trailing items of longer iterables are lost.
      * 
-     * @param <T>
-     *            type
-     * @param iterables
-     *            iterable of Iterable&lt;T&gt; objects
+     * @param <T> type
+     * @param iterables iterable of Iterable&lt;T&gt; objects
      * @return iterable of lists of type T
      */
     public static <T> Iterable<List<T>> zip(final Iterable<Iterable<T>> iterables) {
@@ -589,12 +550,9 @@ public class JIterTools {
      * If the iterables are of uneven length, missing values are filled-in with
      * fillvalue. Iteration continues until the longest iterable is exhausted.
      * 
-     * @param <T>
-     *            type
-     * @param fillvalue
-     *            value to fill in if iterable is exhausted
-     * @param iterables
-     *            1 to n Iterable&lt;T&gt; objects
+     * @param <T> type
+     * @param fillvalue value to fill in if iterable is exhausted
+     * @param iterables 1 to n Iterable&lt;T&gt; objects
      * @return iterable of lists of type T
      */
     public static <T> Iterable<List<T>> zip(final T fillvalue, final Iterable<T>... iterables) {
@@ -606,12 +564,9 @@ public class JIterTools {
      * If the iterables are of uneven length, missing values are filled-in with
      * fillvalue. Iteration continues until the longest iterable is exhausted.
      * 
-     * @param <T>
-     *            type
-     * @param fillvalue
-     *            value to fill in if iterable is exhausted
-     * @param iterables
-     *            iterable of Iterable&lt;T&gt; objects
+     * @param <T> type
+     * @param fillvalue value to fill in if iterable is exhausted
+     * @param iterables iterable of Iterable&lt;T&gt; objects
      * @return iterable of lists of type T
      */
     public static <T> Iterable<List<T>> zip(final T fillvalue, final Iterable<Iterable<T>> iterables) {
@@ -655,10 +610,8 @@ public class JIterTools {
      * Make an iterator that returns object over and over again. Runs
      * indefinitely.
      * 
-     * @param <T>
-     *            type
-     * @param object
-     *            the object to repeat
+     * @param <T> type
+     * @param object the object to repeat
      * @return iterable of type T
      */
     public static <T> Iterable<T> repeat(final T object) {
@@ -688,10 +641,8 @@ public class JIterTools {
      * Make an iterator that returns object over and over again. Runs
      * <b>times</b> times.
      * 
-     * @param <T>
-     *            type
-     * @param object
-     *            the object to repeat
+     * @param <T> type
+     * @param object the object to repeat
      * @return iterable of type T
      */
     public static <T> Iterable<T> repeat(final T object, final int times) {
@@ -724,10 +675,8 @@ public class JIterTools {
      * Return an iterable containing a pair which holds the count and value of
      * the original value from <b>iterable</b>.
      * 
-     * @param <T>
-     *            type
-     * @param iterable
-     *            iterable of type T
+     * @param <T> type
+     * @param iterable iterable of type T
      * @return iterable of type Pair&lt;Integer, T&gt;
      */
     public static <T> Iterable<Pair<Integer, T>> enumerate(final Iterable<T> iterable) {
@@ -738,12 +687,9 @@ public class JIterTools {
      * Return an iterable containing a pair which holds the count and value of
      * the original value from <b>iterable</b>.
      * 
-     * @param <T>
-     *            type
-     * @param iterable
-     *            iterable of type T
-     * @param start
-     *            enumeration start value
+     * @param <T> type
+     * @param iterable iterable of type T
+     * @param start enumeration start value
      * @return iterable of type Pair&lt;Integer, T&gt;
      */
     public static <T> Iterable<Pair<Integer, T>> enumerate(final Iterable<T> iterable, final int start) {
@@ -775,12 +721,9 @@ public class JIterTools {
     /**
      * Return true if predicate(x) is true for every element in iterable.
      * 
-     * @param <T>
-     *            type
-     * @param predicate
-     *            the predicate functor
-     * @param iterable
-     *            iterable of type T
+     * @param <T> type
+     * @param predicate the predicate functor
+     * @param iterable iterable of type T
      * @return true if predicate(x) is true for every element in iterable
      */
     public static <T> boolean all(final IPredicate<T> predicate, final Iterable<T> iterable) {
@@ -794,12 +737,9 @@ public class JIterTools {
     /**
      * Return true if predicate(x) is true for at least one element in iterable.
      * 
-     * @param <T>
-     *            type
-     * @param predicate
-     *            the predicate functor
-     * @param iterable
-     *            iterable of type T
+     * @param <T> type
+     * @param predicate the predicate functor
+     * @param iterable iterable of type T
      * @return true if predicate(x) is true for at least one element in iterable
      */
     public static <T> boolean any(final IPredicate<T> predicate, final Iterable<T> iterable) {
@@ -813,12 +753,9 @@ public class JIterTools {
     /**
      * Return true if predicate(x) is false for every element in iterable.
      * 
-     * @param <T>
-     *            type
-     * @param predicate
-     *            the predicate functor
-     * @param iterable
-     *            iterable of type T
+     * @param <T> type
+     * @param predicate the predicate functor
+     * @param iterable iterable of type T
      * @return true if predicate(x) is false for every element in iterable
      */
     public static <T> boolean no(final IPredicate<T> predicate, final Iterable<T> iterable) {
@@ -833,12 +770,9 @@ public class JIterTools {
      * Returns all elements in iterable and then returns padding object
      * indefinitely.
      * 
-     * @param <T>
-     *            type
-     * @param iterable
-     *            iterable of type T
-     * @param padding
-     *            the padding object
+     * @param <T> type
+     * @param iterable iterable of type T
+     * @param padding the padding object
      * @return iterable of type T
      */
     @SuppressWarnings("unchecked")
@@ -849,12 +783,9 @@ public class JIterTools {
     /**
      * Count how many times the predicate is true in the iterable.
      * 
-     * @param <T>
-     *            type
-     * @param predicate
-     *            the predicate functor
-     * @param iterable
-     *            iterable of type T
+     * @param <T> type
+     * @param predicate the predicate functor
+     * @param iterable iterable of type T
      * @return number of items where predicate(item) is true
      */
     public static <T> int quantify(final IPredicate<T> predicate, final Iterable<T> iterable) {
@@ -869,12 +800,9 @@ public class JIterTools {
     /**
      * Returns the iterable n times.
      * 
-     * @param <T>
-     *            type
-     * @param iterable
-     *            the iterable to repeat
-     * @param n
-     *            repeat how many times
+     * @param <T> type
+     * @param iterable the iterable to repeat
+     * @param n repeat how many times
      * 
      * @return iterable of type T
      */
@@ -888,12 +816,9 @@ public class JIterTools {
      * 
      * slice(range(10), 5) -> 0, 1, 2, 3, 4
      * 
-     * @param <T>
-     *            type
-     * @param iterable
-     *            iterable of type T
-     * @param stop
-     *            the last element
+     * @param <T> type
+     * @param iterable iterable of type T
+     * @param stop the last element
      * @return iterable of type T
      */
     public static <T> Iterable<T> slice(final Iterable<T> iterable, final int stop) {
@@ -906,14 +831,10 @@ public class JIterTools {
      * 
      * slice(range(10), 2, 5) -> 2, 3, 4
      * 
-     * @param <T>
-     *            type
-     * @param iterable
-     *            iterable of type T
-     * @param start
-     *            the first element
-     * @param stop
-     *            the last element
+     * @param <T> type
+     * @param iterable iterable of type T
+     * @param start the first element
+     * @param stop the last element
      * @return iterable of type T
      */
     public static <T> Iterable<T> slice(final Iterable<T> iterable, final int start, final int stop) {
@@ -927,14 +848,10 @@ public class JIterTools {
      * 
      * slice(range(10), 2, 5) -> 2, 3, 4
      * 
-     * @param <T>
-     *            type
-     * @param iterable
-     *            iterable of type T
-     * @param start
-     *            the first element
-     * @param stop
-     *            the last element
+     * @param <T> type
+     * @param iterable iterable of type T
+     * @param start the first element
+     * @param stop the last element
      * @return iterable of type T
      */
     public static <T> Iterable<T> slice(final Iterable<T> iterable, final int start, final int stop, final int step) {
