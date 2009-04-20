@@ -871,9 +871,7 @@ public class JIterTools {
                                 Pair<Integer, T> p = _iterator.next();
                                 if (p.getFirst() == _current_counter) {
                                     _last = p.getSecond();
-                                    if (_counter.hasNext()) {
-                                        _current_counter = _counter.next();
-                                    }
+                                    _current_counter = _counter.hasNext() ? _counter.next() : null;
                                     return;
                                 }
                             }
