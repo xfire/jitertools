@@ -1,6 +1,7 @@
 package de.downgra.jitertools;
 
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 
@@ -24,6 +25,15 @@ public class TestRange {
             result.add(i);
         }
         assertArrayEquals(new Integer[] { 4, 5, 6, 7, 8 }, result.toArray());
+    }
+
+    @Test
+    public void startEndEqual() {
+        ArrayList<Integer> result = new ArrayList<Integer>();
+        for (Integer i : JIterTools.range(42, 42)) {
+            result.add(i);
+        }
+        assertTrue(result.size() == 0);
     }
 
     @Test
